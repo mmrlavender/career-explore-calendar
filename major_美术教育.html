@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>2027 生涯探索年历｜美术教育 专属日</title>
+<meta name="description" content="世界艺术日（4月15日，达·芬奇诞辰，国际艺术协会 IAA 倡导设立）">
+<meta name="generator" content="career-explore-calendar build_site.mjs">
+<style>
+:root{--ink:#1F2A26;--deep:#0F3D2E;--sand:#F5F1E6;--clay:#B4553C;--gold:#C9A227;--violet:#7C6AA8;--line:#DED6C4;--mute:#6B7A70;--paper:#FFFDF6}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;font-family:"Noto Serif SC","Songti SC","Source Han Serif SC",Georgia,"Microsoft YaHei",serif;background:var(--sand);color:var(--ink);line-height:1.7}
+a{color:var(--deep);text-decoration:none}
+.wrap{max-width:1180px;margin:0 auto;padding:0 20px 72px}
+header.hero{background:var(--deep);color:#F5F1E6;padding:38px 0 30px;position:relative;overflow:hidden}
+header.hero:after{content:"";position:absolute;right:-60px;top:-60px;width:260px;height:260px;border-radius:50%;background:rgba(201,162,39,.18)}
+header.hero .wrap{padding-bottom:0}
+.eyebrow{font-size:13px;letter-spacing:.28em;color:#C9A227;margin:0 0 10px}
+h1{font-size:32px;margin:0 0 12px;letter-spacing:.04em;font-weight:600}
+.lede{max-width:760px;color:#DCE7E3;font-size:15px;margin:0}
+.meta-line{margin-top:18px;display:flex;flex-wrap:wrap;gap:8px}
+.chip{display:inline-block;border:1px solid rgba(245,241,230,.35);border-radius:999px;padding:3px 12px;font-size:12.5px;color:#F5F1E6}
+nav.tabs{background:var(--paper);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:30}
+nav.tabs .wrap{display:flex;gap:6px;overflow-x:auto;padding:0 20px}
+nav.tabs a{padding:13px 14px;font-size:14px;color:var(--mute);border-bottom:3px solid transparent;white-space:nowrap}
+nav.tabs a:hover{color:var(--deep)}
+nav.tabs a.on{color:var(--deep);border-bottom-color:var(--clay);font-weight:600}
+section{scroll-margin-top:60px}
+.bar{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:16px 18px;margin:22px 0 8px;position:relative}
+.bar h3{margin:0 0 12px;font-size:15px;color:var(--deep)}
+.fields{display:flex;flex-wrap:wrap;gap:10px 14px;align-items:center}
+.fields label{font-size:12.5px;color:var(--mute);display:flex;align-items:center;gap:6px}
+select,input[type=search]{font-family:inherit;font-size:13.5px;padding:7px 10px;border:1px solid var(--line);border-radius:9px;background:#fff;color:var(--ink)}
+input[type=search]{min-width:220px}
+.count{font-size:12.5px;color:var(--clay);margin-left:auto}
+.btn{font-family:inherit;font-size:13px;padding:7px 14px;border:1px solid var(--deep);background:transparent;color:var(--deep);border-radius:9px;cursor:pointer}
+.btn:hover{background:var(--deep);color:var(--sand)}
+.monthblock{margin:34px 0 0}
+.mhead{display:flex;align-items:baseline;gap:14px;border-bottom:2px solid var(--deep);padding-bottom:8px;margin-bottom:4px}
+.mhead h2{font-size:22px;margin:0;letter-spacing:.06em}
+.mhead .theme{font-size:13.5px;color:var(--clay)}
+.mhead .goal{font-size:12.5px;color:var(--mute);margin-left:auto;text-align:right}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(268px,1fr));gap:14px;padding:16px 0 4px}
+.card{background:var(--paper);border:1px solid var(--line);border-radius:13px;padding:14px 15px 12px;display:flex;gap:12px;transition:.18s;break-inside:avoid}
+.card:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(15,61,46,.10)}
+.card.hide{display:none}
+.card .art{flex:0 0 62px}
+.card .body{min-width:0;flex:1}
+.datepill{font-size:12px;color:var(--mute);letter-spacing:.06em}
+.datepill b{color:var(--ink);font-size:13.5px}
+.tags{display:flex;gap:6px;flex-wrap:wrap;margin:4px 0 5px}
+.tag{font-size:11px;padding:1px 8px;border-radius:999px;color:#fff;letter-spacing:.03em}
+.card h4{margin:2px 0 5px;font-size:15.5px;line-height:1.45;font-weight:600}
+.card p{margin:0;font-size:12.8px;color:#4A554F;line-height:1.62}
+.card .hook{margin-top:7px;font-size:12px;color:var(--clay);border-left:3px solid var(--gold);padding-left:8px}
+.card .foot{margin-top:8px;display:flex;gap:12px;font-size:11.5px;color:var(--mute);flex-wrap:wrap}
+details.more{margin-top:8px}
+details.more summary{cursor:pointer;font-size:12px;color:var(--deep);list-style:none}
+details.more summary::-webkit-details-marker{display:none}
+details.more summary:before{content:"+ ";color:var(--clay)}
+details.more[open] summary:before{content:"- "}
+details.more .inner{font-size:12.4px;color:#3E4A44;background:#F7F3E8;border-radius:9px;padding:9px 11px;margin-top:7px}
+details.more .inner b{color:var(--deep)}
+.idx{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:14px;margin-top:18px}
+.idxcard{background:var(--paper);border:1px solid var(--line);border-radius:13px;padding:16px 18px;display:block}
+.idxcard:hover{border-color:var(--deep)}
+.idxcard .k{font-size:11.5px;letter-spacing:.2em;color:var(--gold)}
+.idxcard h3{margin:6px 0 6px;font-size:18px;color:var(--deep)}
+.idxcard p{margin:0;font-size:12.8px;color:var(--mute);line-height:1.6}
+.legend{display:flex;flex-wrap:wrap;gap:8px 16px;margin:10px 0 0;font-size:12.3px;color:var(--mute)}
+.legend i{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:6px}
+footer{background:var(--deep);color:#C8D4CB;font-size:12.5px;padding:26px 0;margin-top:40px}
+footer .wrap{padding-bottom:0}
+.empty{padding:28px;text-align:center;color:var(--mute);font-size:13.5px;display:none}
+.sec-title{margin:38px 0 6px;font-size:15px;letter-spacing:.16em;color:var(--clay)}
+.majorcard{background:var(--paper);border:1px solid var(--line);border-radius:13px;padding:15px 16px;break-inside:avoid}
+.majorcard .col{font-size:11.5px;color:var(--violet);letter-spacing:.08em}
+.majorcard h4{margin:4px 0 6px;font-size:15.5px}
+.majorcard .row{font-size:12.6px;color:#44504A;margin:3px 0}
+.majorcard .row b{color:var(--deep)}
+.punch{display:none}
+@media print{
+  @page{size:A5 portrait;margin:9mm 8mm 9mm 14mm}
+  body{background:#fff;font-size:10.5pt;line-height:1.55}
+  header.hero{background:#fff;color:#1F2A26;padding:0 0 6mm;border-bottom:2px solid #0F3D2E}
+  header.hero .eyebrow{color:#B4553C}
+  .lede,.chip{color:#44504A}
+  nav.tabs,.bar,.empty,footer,.legend{display:none!important}
+  .wrap{max-width:none;padding:0}
+  .grid{grid-template-columns:1fr 1fr;gap:5mm;padding:4mm 0 0}
+  .card{box-shadow:none;transform:none;border-color:#CFC7B4;padding:3mm}
+  .card .art{flex:0 0 16mm}
+  .card h4{font-size:11pt}
+  details.more{display:none}
+  .monthblock{page-break-before:auto}
+  .mhead{page-break-after:avoid}
+  .punch{display:block;position:fixed;left:4mm;top:0;bottom:0;width:6mm;pointer-events:none}
+  .punch:before{content:"";display:block;height:100%;background:repeating-linear-gradient(to bottom,transparent 0 18mm,#B9B1A0 18mm 18.6mm,transparent 18.6mm 20mm)}
+}
+</style>
+</head>
+<body>
+<div class="punch"></div>
+<header class="hero"><div class="wrap">
+<p class="eyebrow">MAJOR DAY · 艺术教育学院</p>
+<h1>美术教育</h1>
+<p class="lede">世界艺术日（4月15日，达·芬奇诞辰，国际艺术协会 IAA 倡导设立）</p>
+<div class="meta-line"><span class="chip">艺术教育学院</span><span class="chip">2027-04-15 周四</span><span class="chip">约 60 分钟</span></div>
+</div></header>
+<nav class="tabs"><div class="wrap"><a href="#top" class="on">本页</a></div></nav>
+<div class="wrap" id="top"><p class="sec-title">专业专属探索日</p><div class="majorcard"><div class="col">艺术教育学院 ／ 福建幼儿师范高等专科学校（闽幼高专）</div><h4>美术教育 · 世界艺术日</h4><div class="row"><b>落在：</b>2027-04-15 周四 ／ 世界艺术日（4月15日，达·芬奇诞辰，国际艺术协会 IAA 倡导设立）</div><div class="row"><b>为什么是这一天：</b>世界艺术日定在达·芬奇生日，主张艺术对社会的价值，与美术教育的审美启蒙与创作教学直接对应。</div><div class="row"><b>当日动作（约 60 分钟）：</b><ol><li>以&quot;我的 2027&quot;为题画 1 张 20 分钟速写，不许修改，保留第一笔</li><li>给这张画写 100 字教学说明：如果教小学生画这个，我会怎么引导</li><li>整理 5 张自己的旧作，选出最能代表成长的一张并说明理由</li><li>列出 3 个可用于课堂的本地美术资源（场馆、材料、手艺人）</li></ol></div><div class="row"><b>材料：</b>速写纸、笔、旧作照片</div><div class="row"><b>产出：</b>速写 1 张＋教学说明 100 字</div><div class="row"><b>配套工具卡：</b>S08、P02、N05</div></div><div class="bar" style="margin-top:18px"><h3>使用建议</h3><div style="font-size:13px;color:#44504A;line-height:1.85">1. 专业专属日与当月主线的日常探索并行，不替代当日日卡。<br>2. 建议由本专业班主任或社团带组者统一组织，一次 45—60 分钟完成。<br>3. 产出物收进学生自己的生涯档案袋，年末做年报时作为证据使用。</div></div></div>
+<footer><div class="wrap">福建幼儿师范高等专科学校 ｜ 生涯探索年历 v1.0 ｜ 零外链离线单页 ｜ 内容为探索工具与课程素材，不承诺升学就业结果</div></footer>
+<script></script>
+</body>
+</html>

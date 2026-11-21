@@ -1,0 +1,551 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>2027 生涯探索年历 · 十月打印版（A4 四合一）</title>
+<style>
+:root{ --ink:#1f2a24; --sub:#5b625c; --paper:#fffdf8; --line:#ddd6c6; }
+@page{ size:A4 portrait; margin:0; }
+*{ box-sizing:border-box; -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+html,body{ margin:0; padding:0; }
+body{ background:#e7e4dc; font-family:"Microsoft YaHei","PingFang SC","Noto Sans CJK SC",sans-serif; color:var(--ink); }
+.screen-note{ max-width:210mm; margin:8mm auto 6mm; background:#fff; border:1px solid #d8d2c4; border-left:4px solid #0F3D2E; border-radius:4px; padding:10px 14px; font-size:13px; line-height:1.75; color:#33403a; }
+.screen-note b{ color:#0F3D2E; }
+.screen-note code{ background:#f2efe6; padding:1px 5px; border-radius:3px; font-size:12px; }
+.a4{ width:210mm; height:297mm; background:#fff; display:grid; grid-template-columns:105mm 105mm; grid-template-rows:148.5mm 148.5mm; overflow:hidden; margin:0 auto 6mm; box-shadow:0 2px 10px rgba(0,0,0,.16); page-break-after:always; break-after:page; }
+.cell{ position:relative; width:105mm; height:148.5mm; overflow:hidden; }
+.cell::after{ content:""; position:absolute; inset:0; border:0.2mm dashed #cfc9ba; pointer-events:none; z-index:5; }
+.sheet{ position:absolute; left:0; top:0; width:148mm; height:210mm; padding:8.5mm 8.5mm 6.5mm; background:var(--paper); transform:scale(0.707143); transform-origin:top left; display:flex; flex-direction:column; }
+.sheet .top{ display:flex; align-items:flex-end; justify-content:space-between; gap:3mm; border-bottom:0.7mm solid var(--c,#0F3D2E); padding-bottom:1.8mm; }
+.dt{ font-size:19pt; font-weight:800; line-height:1; letter-spacing:.3pt; }
+.dt small{ font-size:8.6pt; font-weight:600; color:#6b7169; margin-left:1.6mm; letter-spacing:0; }
+.meta{ text-align:right; line-height:1.55; }
+.chip{ display:inline-block; background:var(--c); color:#fff; padding:0.5mm 2mm; border-radius:1mm; font-size:7pt; font-weight:700; letter-spacing:.2pt; }
+.lines{ display:block; margin-top:1mm; font-size:6.8pt; color:#5b625c; }
+.sheet h1{ font-size:13.6pt; line-height:1.34; font-weight:800; margin:2.8mm 0 1.8mm; letter-spacing:.2pt; }
+.desc{ font-size:8.5pt; line-height:1.6; color:#2c352f; margin:0 0 2.2mm; }
+.kv{ display:flex; flex-wrap:wrap; gap:1.4mm 2.6mm; font-size:7.4pt; color:#4a534c; margin-bottom:2mm; }
+.kv i{ font-style:normal; color:#9aa19a; }
+.cbox{ border:0.35mm solid var(--line); border-radius:1.2mm; background:#fff; padding:2.6mm 3mm 2.8mm; }
+.cbox .ch{ display:flex; justify-content:space-between; align-items:baseline; gap:2mm; font-size:8pt; font-weight:800; color:#0F3D2E; border-bottom:0.3mm dashed var(--line); padding-bottom:1.3mm; margin-bottom:1.8mm; }
+.cbox .ch em{ font-style:normal; font-size:6.8pt; font-weight:600; color:#7b837c; }
+.pool{ font-size:7.3pt; line-height:1.5; color:#4a534c; margin:0 0 1.6mm; }
+ol.steps{ margin:0; padding-left:4.4mm; font-size:7.5pt; line-height:1.52; }
+ol.steps li{ margin-bottom:0.7mm; }
+.out{ margin-top:1.6mm; font-size:7.3pt; color:#33403a; background:#f5f2e8; border-radius:0.8mm; padding:1.3mm 1.8mm; }
+.out b{ color:#0F3D2E; }
+.vars{ display:flex; gap:1.5mm; margin-top:1.8mm; }
+.vars div{ flex:1; background:#f6f3ea; border-radius:1mm; padding:1.2mm 1.4mm; font-size:6.6pt; line-height:1.45; color:#4a534c; }
+.vars div b{ display:block; color:#0F3D2E; font-size:6.8pt; margin-bottom:0.5mm; }
+.hook{ margin-top:1.8mm; font-size:7.2pt; line-height:1.5; color:#7a5a3a; background:#fdf6ea; border-left:0.8mm solid #d9a55a; padding:1.6mm 2mm; }
+.foot{ margin-top:auto; padding-top:1.2mm; border-top:0.25mm solid #e6e0d2; display:flex; justify-content:space-between; font-size:6.4pt; color:#9aa19a; letter-spacing:.2pt; }
+/* 月封面 */
+.sheet.mon{ justify-content:flex-start; }
+.sheet.mon .mnum{ font-size:44pt; font-weight:800; line-height:.86; color:var(--c,#0F3D2E); letter-spacing:-1pt; }
+.sheet.mon .mttl{ font-size:15pt; font-weight:800; margin-top:2mm; }
+.sheet.mon .mq{ margin-top:3.5mm; font-size:9.4pt; line-height:1.65; color:#2c352f; background:#f5f2e8; border-left:1mm solid var(--c,#0F3D2E); padding:2.6mm 3mm; }
+.mrow{ margin-top:2.4mm; font-size:7.8pt; line-height:1.55; color:#33403a; }
+.mrow b{ color:#0F3D2E; display:inline-block; min-width:11mm; }
+.pool-chips{ margin-top:3mm; display:flex; flex-wrap:wrap; gap:1.2mm; }
+.pool-chips span{ background:#f0ece0; border-radius:0.8mm; padding:0.9mm 1.6mm; font-size:6.8pt; color:#4a534c; }
+/* 专业日页 */
+.sheet.maj .anchor{ margin-top:2.4mm; font-size:7.6pt; color:#5b4a86; background:#f3f0fa; border-radius:1mm; padding:1.8mm 2.2mm; line-height:1.5; }
+.sheet.maj .reason{ margin-top:2mm; font-size:7.8pt; line-height:1.55; color:#2c352f; }
+.sheet.maj ol{ margin:1.8mm 0 0; padding-left:4.4mm; font-size:7.6pt; line-height:1.55; }
+.sheet.maj ol li{ margin-bottom:0.9mm; }
+@media screen{
+  .a4{ margin-top:0; }
+  .a4:first-of-type{ margin-top:6mm; }
+}
+@media print{
+  body{ background:#fff; }
+  .screen-note{ display:none !important; }
+  .a4{ margin:0 !important; box-shadow:none !important; }
+  .a4:last-of-type{ page-break-after:auto; break-after:auto; }
+  .cell::after{ border-color:#d8d2c4; }
+}
+</style>
+</head><body>
+<div class="screen-note"><b>打印设置</b>：Ctrl+P → 纸张 <code>A4 纵向</code>、缩放 <code>默认（100%）</code>、边距 <code>无</code>、勾选 <code>背景图形</code>。每张 A4 排 4 个 A5 页（左上 → 右上 → 左下 → 右下），格间虚线为裁切线，裁开后即为 A5 卡片，<b>无装订孔位</b>。本说明不参与打印。　十月共 32 个 A5 页，共 8 张 A4。</div><section class="a4"><div class="cell"><section class="sheet mon" style="--c:#0F3D2E">
+  <div class="mnum">10</div>
+  <div class="mttl">十月　补课：把缺口补成证书</div>
+  <div class="mq">我离目标还差哪三项硬能力？哪项能在 30 天内动起来？</div>
+  <div class="mrow"><b>本月目标</b>把前九个月暴露的差距收敛为三项，排出优先级，启动 30 天技能冲刺，搭起作品集骨架。</div>
+  <div class="mrow"><b>做法</b>清单化＋优先级排序＋冲刺计划（S/D 类）</div>
+  <div class="mrow"><b>月度产出</b>能力缺口—冲刺计划表＋作品集骨架</div>
+  <div class="mrow"><b>节奏</b></div>
+  <div class="mrow"><b>分线提示</b>只允许三项，超过三项视为无效计划</div>
+  <div class="pool-chips"><span>X01 复合能力拼图</span><span>D06 能力缺口优先级</span><span>A11 三十天技能冲刺</span><span>S07 证书与技能清单</span><span>S08 作品集骨架</span></div>
+  <div class="foot"><span>2027 生涯探索年历 · 月封面</span><span>第 1 / 32 页</span></div>
+</section></div><div class="cell"><section class="sheet" style="--c:#7C6AA8">
+  <div class="top">
+    <div class="dt">10月1日<small>周五</small></div>
+    <div class="meta"><span class="chip">专业专属日</span><span class="lines">走向 A升学 / B就业 / C创业</span></div>
+  </div>
+  <h1>音乐教育·专属探索日</h1>
+  <p class="desc">当天完成四段式探索：1)用手机录一段 90 秒自弹自唱或清唱，回看写 2 个改进点；2)设计 1 个 10 分钟儿童节奏训练活动，只用身体和简单打击物；3)拆解 1 首儿歌的节奏与和弦结构，标出适合教学的三个点；4)列出 3 个可带课或演出的本地渠道，写清联系人与门槛</p>
+  <div class="kv">
+    <span><i>用时</i> 70 分钟</span>
+    <span><i>材料</i> 乐器、手机、活动设计单</span>
+  </div>
+  
+  <div class="hook">挂靠「国际音乐日（10月1日，国际音乐理事会1975年设立）」；当日产出并入专业地图，11 月 D07 定档时作为专业侧事实依据</div>
+  <div class="foot"><span>2027 生涯探索年历 · 十月</span><span>第 2 / 32 页</span></div>
+</section></div><div class="cell"><section class="sheet" style="--c:#0F3D2E">
+  <div class="top">
+    <div class="dt">10月2日<small>周六</small></div>
+    <div class="meta"><span class="chip">工具卡日</span><span class="lines">走向 A升学 / B就业 / C创业</span></div>
+  </div>
+  <h1>①列六项能力</h1>
+  <p class="desc">列出 6 项可展示能力含软硬</p>
+  <div class="kv">
+    <span><i>用时</i> 10 分钟</span>
+    <span><i>材料</i> 纸笔</span>
+  </div>
+  
+  <div class="hook">结果记入微创业闭环卡，9 月 D10 组合方案据此判断是否叠加｜本卡进度 1/5，下一步：②选三项主能力</div>
+  <div class="foot"><span>2027 生涯探索年历 · 十月</span><span>第 3 / 32 页</span></div>
+</section></div><div class="cell"><section class="sheet" style="--c:#3F6E8C">
+  <div class="top">
+    <div class="dt">10月3日<small>周日</small></div>
+    <div class="meta"><span class="chip">周闭环</span><span class="lines">走向 A升学 / B就业 / C创业</span></div>
+  </div>
+  <h1>周闭环四问：第三问停一件事</h1>
+  <p class="desc">写下周要停掉的 1 件无效动作（另三问固定：本周做了什么事实／哪条路更清晰／下周停掉什么、最小一步是什么）</p>
+  <div class="kv">
+    <span><i>用时</i> 10 分钟</span>
+    <span><i>材料</i> 周复盘表</span>
+  </div>
+  <div class="cbox">
+    <div class="ch"><span>工具卡 R01 · 周闭环复盘四问</span><em>10 分钟 · 核心卡</em></div>
+    <p class="pool">每周日用四个问题结掉一周，保证探索动作不断线、不重复、不空转。</p>
+    <ol class="steps"><li>第一问：本周我做了什么具体动作，写出事实不写感受</li><li>第二问：这个动作让我对哪条路径更清楚或更糊涂，写一句</li><li>第三问：下周我要停掉什么，至少停 1 件无效动作</li><li>第四问：下周最小的一步是什么，具体到今天能做</li><li>把四问写在固定位置，与上周对比</li></ol>
+    <div class="out"><b>本卡产出：</b>周复盘表（每周一行）</div>
+    <div class="vars"><div><b>A 升学</b>复盘中标记与考试科目相关的动作完成情况</div><div><b>B 就业</b>复盘中标记投递、面试与实习进展</div><div><b>C 创业</b>复盘中标记试水进度与客户反馈</div></div>
+  </div>
+  <div class="hook">52 周累积成年度轨迹；本周所属月份主题「补课：把缺口补成证书」</div>
+  <div class="foot"><span>2027 生涯探索年历 · 十月</span><span>第 4 / 32 页</span></div>
+</section></div></section>
+<section class="a4"><div class="cell"><section class="sheet" style="--c:#0F3D2E">
+  <div class="top">
+    <div class="dt">10月4日<small>周一</small></div>
+    <div class="meta"><span class="chip">工具卡日</span><span class="lines">走向 A升学 / B就业 / C创业 / D考编</span></div>
+  </div>
+  <h1>①汇总缺口</h1>
+  <p class="desc">汇总三处缺口来源</p>
+  <div class="kv">
+    <span><i>用时</i> 10 分钟</span>
+    <span><i>材料</i> 旧成果</span>
+  </div>
+  
+  <div class="hook">结论写进决策陈述书，12 月 R05 年报直接引用｜本卡进度 1/5，下一步：②改能力表述</div>
+  <div class="foot"><span>2027 生涯探索年历 · 十月</span><span>第 5 / 32 页</span></div>
+</section></div><div class="cell"><section class="sheet" style="--c:#0F3D2E">
+  <div class="top">
+    <div class="dt">10月5日<small>周二</small></div>
+    <div class="meta"><span class="chip">工具卡日</span><span class="lines">走向 A升学 / B就业 / C创业</span></div>
+  </div>
+  <h1>①选定一项</h1>
+  <p class="desc">从缺口清单只选 1 项并写清交付物</p>
+  <div class="kv">
+    <span><i>用时</i> 20 分钟</span>
+    <span><i>材料</i> D06 成果</span>
+  </div>
+  
+  <div class="hook">结果记入「行动实验记录」，10 月 D06 缺口优先级据此排序｜本卡进度 1/5，下一步：②拆四节点</div>
+  <div class="foot"><span>2027 生涯探索年历 · 十月</span><span>第 6 / 32 页</span></div>
+</section></div><div class="cell"><section class="sheet" style="--c:#0F3D2E">
+  <div class="top">
+    <div class="dt">10月6日<small>周三</small></div>
+    <div class="meta"><span class="chip">工具卡日</span><span class="lines">走向 A升学 / B就业 / C创业</span></div>
+  </div>
+  <h1>①必需证书</h1>
+  <p class="desc">列出本专业必需证书</p>
+  <div class="kv">
+    <span><i>用时</i> 10 分钟</span>
+    <span><i>材料</i> 专业目录</span>
+  </div>
+  
+  <div class="hook">产出存进成果夹与作品集，12 月 R05 年报直接引用｜本卡进度 1/5，下一步：②加分证书</div>
+  <div class="foot"><span>2027 生涯探索年历 · 十月</span><span>第 7 / 32 页</span></div>
+</section></div><div class="cell"><section class="sheet" style="--c:#0F3D2E">
+  <div class="top">
+    <div class="dt">10月7日<small>周四</small></div>
+    <div class="meta"><span class="chip">工具卡日</span><span class="lines">走向 A升学 / B就业 / C创业</span></div>
+  </div>
+  <h1>①收集产出</h1>
+  <p class="desc">收齐近两年可展示文件</p>
+  <div class="kv">
+    <span><i>用时</i> 15 分钟</span>
+    <span><i>材料</i> 文件夹</span>
+  </div>
+  
+  <div class="hook">产出存进成果夹与作品集，12 月 R05 年报直接引用｜本卡进度 1/5，下一步：②筛选排序</div>
+  <div class="foot"><span>2027 生涯探索年历 · 十月</span><span>第 8 / 32 页</span></div>
+</section></div></section>
+<section class="a4"><div class="cell"><section class="sheet" style="--c:#7C6AA8">
+  <div class="top">
+    <div class="dt">10月8日<small>周五</small></div>
+    <div class="meta"><span class="chip">专业专属日</span><span class="lines">走向 A升学 / B就业 / C创业</span></div>
+  </div>
+  <h1>智慧健康养老服务与管理·专属探索日</h1>
+  <p class="desc">当天完成四段式探索：1)访谈 1 位 65 岁以上长辈，记录 3 个真实生活困难（原话记录）；2)设计 1 份&quot;适老化改造 10 项自检表&quot;，每项标明判断标准；3)列出 3 类养老机构（居家、社区、机构）与各自典型岗位；4)写 100 字&quot;我理解的尊严养老&quot;，不许用&quot;关爱&quot;二字</p>
+  <div class="kv">
+    <span><i>用时</i> 70 分钟</span>
+    <span><i>材料</i> 访谈提纲、自检表模板</span>
+  </div>
+  
+  <div class="hook">挂靠「重阳节（2027年10月8日，农历九月初九）」；当日产出并入专业地图，11 月 D07 定档时作为专业侧事实依据</div>
+  <div class="foot"><span>2027 生涯探索年历 · 十月</span><span>第 9 / 32 页</span></div>
+</section></div><div class="cell"><section class="sheet" style="--c:#0F3D2E">
+  <div class="top">
+    <div class="dt">10月9日<small>周六</small></div>
+    <div class="meta"><span class="chip">工具卡日</span><span class="lines">走向 A升学 / B就业 / C创业</span></div>
+  </div>
+  <h1>②选三项主能力</h1>
+  <p class="desc">从旧成果挑 3 项最扎实的</p>
+  <div class="kv">
+    <span><i>用时</i> 10 分钟</span>
+    <span><i>材料</i> P02/P04</span>
+  </div>
+  
+  <div class="hook">结果记入微创业闭环卡，9 月 D10 组合方案据此判断是否叠加｜本卡进度 2/5，下一步：③两两组合</div>
+  <div class="foot"><span>2027 生涯探索年历 · 十月</span><span>第 10 / 32 页</span></div>
+</section></div><div class="cell"><section class="sheet" style="--c:#3F6E8C">
+  <div class="top">
+    <div class="dt">10月10日<small>周日</small></div>
+    <div class="meta"><span class="chip">周闭环</span><span class="lines">走向 A升学 / B就业 / C创业</span></div>
+  </div>
+  <h1>周闭环四问：第四问定一步</h1>
+  <p class="desc">写下周最小的一步（另三问固定：本周做了什么事实／哪条路更清晰／下周停掉什么、最小一步是什么）</p>
+  <div class="kv">
+    <span><i>用时</i> 10 分钟</span>
+    <span><i>材料</i> 周复盘表</span>
+  </div>
+  <div class="cbox">
+    <div class="ch"><span>工具卡 R01 · 周闭环复盘四问</span><em>10 分钟 · 核心卡</em></div>
+    <p class="pool">每周日用四个问题结掉一周，保证探索动作不断线、不重复、不空转。</p>
+    <ol class="steps"><li>第一问：本周我做了什么具体动作，写出事实不写感受</li><li>第二问：这个动作让我对哪条路径更清楚或更糊涂，写一句</li><li>第三问：下周我要停掉什么，至少停 1 件无效动作</li><li>第四问：下周最小的一步是什么，具体到今天能做</li><li>把四问写在固定位置，与上周对比</li></ol>
+    <div class="out"><b>本卡产出：</b>周复盘表（每周一行）</div>
+    <div class="vars"><div><b>A 升学</b>复盘中标记与考试科目相关的动作完成情况</div><div><b>B 就业</b>复盘中标记投递、面试与实习进展</div><div><b>C 创业</b>复盘中标记试水进度与客户反馈</div></div>
+  </div>
+  <div class="hook">52 周累积成年度轨迹；本周所属月份主题「补课：把缺口补成证书」</div>
+  <div class="foot"><span>2027 生涯探索年历 · 十月</span><span>第 11 / 32 页</span></div>
+</section></div><div class="cell"><section class="sheet" style="--c:#0F3D2E">
+  <div class="top">
+    <div class="dt">10月11日<small>周一</small></div>
+    <div class="meta"><span class="chip">工具卡日</span><span class="lines">走向 A升学 / B就业 / C创业 / D考编</span></div>
+  </div>
+  <h1>②改能力表述</h1>
+  <p class="desc">写成可训练的能力项</p>
+  <div class="kv">
+    <span><i>用时</i> 10 分钟</span>
+    <span><i>材料</i> 缺口表</span>
+  </div>
+  
+  <div class="hook">结论写进决策陈述书，12 月 R05 年报直接引用｜本卡进度 2/5，下一步：③两维打分</div>
+  <div class="foot"><span>2027 生涯探索年历 · 十月</span><span>第 12 / 32 页</span></div>
+</section></div></section>
+<section class="a4"><div class="cell"><section class="sheet" style="--c:#0F3D2E">
+  <div class="top">
+    <div class="dt">10月12日<small>周二</small></div>
+    <div class="meta"><span class="chip">工具卡日</span><span class="lines">走向 A升学 / B就业 / C创业</span></div>
+  </div>
+  <h1>②拆四节点</h1>
+  <p class="desc">把 30 天拆成 4 周并定每周产出</p>
+  <div class="kv">
+    <span><i>用时</i> 20 分钟</span>
+    <span><i>材料</i> 计划表</span>
+  </div>
+  
+  <div class="hook">结果记入「行动实验记录」，10 月 D06 缺口优先级据此排序｜本卡进度 2/5，下一步：③每日打卡</div>
+  <div class="foot"><span>2027 生涯探索年历 · 十月</span><span>第 13 / 32 页</span></div>
+</section></div><div class="cell"><section class="sheet" style="--c:#0F3D2E">
+  <div class="top">
+    <div class="dt">10月13日<small>周三</small></div>
+    <div class="meta"><span class="chip">工具卡日</span><span class="lines">走向 A升学 / B就业 / C创业</span></div>
+  </div>
+  <h1>②加分证书</h1>
+  <p class="desc">列出 3-4 项加分证书</p>
+  <div class="kv">
+    <span><i>用时</i> 5 分钟</span>
+    <span><i>材料</i> —</span>
+  </div>
+  
+  <div class="hook">产出存进成果夹与作品集，12 月 R05 年报直接引用｜本卡进度 2/5，下一步：③查时间费用</div>
+  <div class="foot"><span>2027 生涯探索年历 · 十月</span><span>第 14 / 32 页</span></div>
+</section></div><div class="cell"><section class="sheet" style="--c:#0F3D2E">
+  <div class="top">
+    <div class="dt">10月14日<small>周四</small></div>
+    <div class="meta"><span class="chip">工具卡日</span><span class="lines">走向 A升学 / B就业 / C创业</span></div>
+  </div>
+  <h1>②筛选排序</h1>
+  <p class="desc">筛 6-8 件并按证明力排序</p>
+  <div class="kv">
+    <span><i>用时</i> 10 分钟</span>
+    <span><i>材料</i> 文件夹</span>
+  </div>
+  
+  <div class="hook">产出存进成果夹与作品集，12 月 R05 年报直接引用｜本卡进度 2/5，下一步：③三行说明</div>
+  <div class="foot"><span>2027 生涯探索年历 · 十月</span><span>第 15 / 32 页</span></div>
+</section></div><div class="cell"><section class="sheet" style="--c:#0F3D2E">
+  <div class="top">
+    <div class="dt">10月15日<small>周五</small></div>
+    <div class="meta"><span class="chip">工具卡日</span><span class="lines">走向 A升学 / B就业 / C创业</span></div>
+  </div>
+  <h1>③两两组合</h1>
+  <p class="desc">写 3 个组合各解决什么问题</p>
+  <div class="kv">
+    <span><i>用时</i> 15 分钟</span>
+    <span><i>材料</i> 拼图表</span>
+  </div>
+  
+  <div class="hook">结果记入微创业闭环卡，9 月 D10 组合方案据此判断是否叠加｜本卡进度 3/5，下一步：④验证一个组合</div>
+  <div class="foot"><span>2027 生涯探索年历 · 十月</span><span>第 16 / 32 页</span></div>
+</section></div></section>
+<section class="a4"><div class="cell"><section class="sheet" style="--c:#0F3D2E">
+  <div class="top">
+    <div class="dt">10月16日<small>周六</small></div>
+    <div class="meta"><span class="chip">工具卡日</span><span class="lines">走向 A升学 / B就业 / C创业 / D考编</span></div>
+  </div>
+  <h1>③两维打分</h1>
+  <p class="desc">按需要度与提升速度打分</p>
+  <div class="kv">
+    <span><i>用时</i> 10 分钟</span>
+    <span><i>材料</i> 四象限</span>
+  </div>
+  
+  <div class="hook">结论写进决策陈述书，12 月 R05 年报直接引用｜本卡进度 3/5，下一步：④取第一象限</div>
+  <div class="foot"><span>2027 生涯探索年历 · 十月</span><span>第 17 / 32 页</span></div>
+</section></div><div class="cell"><section class="sheet" style="--c:#3F6E8C">
+  <div class="top">
+    <div class="dt">10月17日<small>周日</small></div>
+    <div class="meta"><span class="chip">周闭环</span><span class="lines">走向 A升学 / B就业 / C创业</span></div>
+  </div>
+  <h1>周闭环四问：与上周对照</h1>
+  <p class="desc">与上周对比看是否空转（另三问固定：本周做了什么事实／哪条路更清晰／下周停掉什么、最小一步是什么）</p>
+  <div class="kv">
+    <span><i>用时</i> 10 分钟</span>
+    <span><i>材料</i> 周复盘表</span>
+  </div>
+  <div class="cbox">
+    <div class="ch"><span>工具卡 R01 · 周闭环复盘四问</span><em>10 分钟 · 核心卡</em></div>
+    <p class="pool">每周日用四个问题结掉一周，保证探索动作不断线、不重复、不空转。</p>
+    <ol class="steps"><li>第一问：本周我做了什么具体动作，写出事实不写感受</li><li>第二问：这个动作让我对哪条路径更清楚或更糊涂，写一句</li><li>第三问：下周我要停掉什么，至少停 1 件无效动作</li><li>第四问：下周最小的一步是什么，具体到今天能做</li><li>把四问写在固定位置，与上周对比</li></ol>
+    <div class="out"><b>本卡产出：</b>周复盘表（每周一行）</div>
+    <div class="vars"><div><b>A 升学</b>复盘中标记与考试科目相关的动作完成情况</div><div><b>B 就业</b>复盘中标记投递、面试与实习进展</div><div><b>C 创业</b>复盘中标记试水进度与客户反馈</div></div>
+  </div>
+  <div class="hook">52 周累积成年度轨迹；本周所属月份主题「补课：把缺口补成证书」</div>
+  <div class="foot"><span>2027 生涯探索年历 · 十月</span><span>第 18 / 32 页</span></div>
+</section></div><div class="cell"><section class="sheet" style="--c:#0F3D2E">
+  <div class="top">
+    <div class="dt">10月18日<small>周一</small></div>
+    <div class="meta"><span class="chip">工具卡日</span><span class="lines">走向 A升学 / B就业 / C创业</span></div>
+  </div>
+  <h1>③每日打卡</h1>
+  <p class="desc">记录每天实际分钟数</p>
+  <div class="kv">
+    <span><i>用时</i> 5 分钟</span>
+    <span><i>材料</i> 打卡表</span>
+  </div>
+  
+  <div class="hook">结果记入「行动实验记录」，10 月 D06 缺口优先级据此排序｜本卡进度 3/5，下一步：④中期降标</div>
+  <div class="foot"><span>2027 生涯探索年历 · 十月</span><span>第 19 / 32 页</span></div>
+</section></div><div class="cell"><section class="sheet" style="--c:#0F3D2E">
+  <div class="top">
+    <div class="dt">10月19日<small>周二</small></div>
+    <div class="meta"><span class="chip">工具卡日</span><span class="lines">走向 A升学 / B就业 / C创业</span></div>
+  </div>
+  <h1>③查时间费用</h1>
+  <p class="desc">逐项查报名、考试、费用、入口</p>
+  <div class="kv">
+    <span><i>用时</i> 15 分钟</span>
+    <span><i>材料</i> 官网</span>
+  </div>
+  
+  <div class="hook">产出存进成果夹与作品集，12 月 R05 年报直接引用｜本卡进度 3/5，下一步：④标自评状态</div>
+  <div class="foot"><span>2027 生涯探索年历 · 十月</span><span>第 20 / 32 页</span></div>
+</section></div></section>
+<section class="a4"><div class="cell"><section class="sheet" style="--c:#0F3D2E">
+  <div class="top">
+    <div class="dt">10月20日<small>周三</small></div>
+    <div class="meta"><span class="chip">工具卡日</span><span class="lines">走向 A升学 / B就业 / C创业</span></div>
+  </div>
+  <h1>③三行说明</h1>
+  <p class="desc">为每件写做了什么与解决什么</p>
+  <div class="kv">
+    <span><i>用时</i> 15 分钟</span>
+    <span><i>材料</i> 文档</span>
+  </div>
+  
+  <div class="hook">产出存进成果夹与作品集，12 月 R05 年报直接引用｜本卡进度 3/5，下一步：④搭结构</div>
+  <div class="foot"><span>2027 生涯探索年历 · 十月</span><span>第 21 / 32 页</span></div>
+</section></div><div class="cell"><section class="sheet" style="--c:#0F3D2E">
+  <div class="top">
+    <div class="dt">10月21日<small>周四</small></div>
+    <div class="meta"><span class="chip">工具卡日</span><span class="lines">走向 A升学 / B就业 / C创业</span></div>
+  </div>
+  <h1>④验证一个组合</h1>
+  <p class="desc">为最佳组合找 2 个需求方问</p>
+  <div class="kv">
+    <span><i>用时</i> 15 分钟</span>
+    <span><i>材料</i> —</span>
+  </div>
+  
+  <div class="hook">结果记入微创业闭环卡，9 月 D10 组合方案据此判断是否叠加｜本卡进度 4/5，下一步：⑤起名定位</div>
+  <div class="foot"><span>2027 生涯探索年历 · 十月</span><span>第 22 / 32 页</span></div>
+</section></div><div class="cell"><section class="sheet" style="--c:#0F3D2E">
+  <div class="top">
+    <div class="dt">10月22日<small>周五</small></div>
+    <div class="meta"><span class="chip">工具卡日</span><span class="lines">走向 A升学 / B就业 / C创业 / D考编</span></div>
+  </div>
+  <h1>④取第一象限</h1>
+  <p class="desc">列出 3 项高需要快提升</p>
+  <div class="kv">
+    <span><i>用时</i> 10 分钟</span>
+    <span><i>材料</i> 表格</span>
+  </div>
+  
+  <div class="hook">结论写进决策陈述书，12 月 R05 年报直接引用｜本卡进度 4/5，下一步：⑤选一项</div>
+  <div class="foot"><span>2027 生涯探索年历 · 十月</span><span>第 23 / 32 页</span></div>
+</section></div><div class="cell"><section class="sheet" style="--c:#2E7D6F">
+  <div class="top">
+    <div class="dt">10月23日<small>周六</small></div>
+    <div class="meta"><span class="chip">节气观察</span><span class="lines">走向 A升学 / B就业 / C创业</span></div>
+  </div>
+  <h1>霜降·节律观察</h1>
+  <p class="desc">把一个犹豫中的选项写下来，标出到底卡在哪一步</p>
+  <div class="kv">
+    <span><i>用时</i> 10 分钟</span>
+    <span><i>材料</i> 纸笔</span>
+  </div>
+  
+  <div class="hook">节气是年历的时间刻度：本日只观察不推进，与本月主题「补课：把缺口补成证书」对照</div>
+  <div class="foot"><span>2027 生涯探索年历 · 十月</span><span>第 24 / 32 页</span></div>
+</section></div></section>
+<section class="a4"><div class="cell"><section class="sheet" style="--c:#3F6E8C">
+  <div class="top">
+    <div class="dt">10月24日<small>周日</small></div>
+    <div class="meta"><span class="chip">周闭环</span><span class="lines">走向 A升学 / B就业 / C创业</span></div>
+  </div>
+  <h1>周闭环四问：第一问写事实</h1>
+  <p class="desc">写本周具体动作，只写事实（另三问固定：本周做了什么事实／哪条路更清晰／下周停掉什么、最小一步是什么）</p>
+  <div class="kv">
+    <span><i>用时</i> 10 分钟</span>
+    <span><i>材料</i> 周复盘表</span>
+  </div>
+  <div class="cbox">
+    <div class="ch"><span>工具卡 R01 · 周闭环复盘四问</span><em>10 分钟 · 核心卡</em></div>
+    <p class="pool">每周日用四个问题结掉一周，保证探索动作不断线、不重复、不空转。</p>
+    <ol class="steps"><li>第一问：本周我做了什么具体动作，写出事实不写感受</li><li>第二问：这个动作让我对哪条路径更清楚或更糊涂，写一句</li><li>第三问：下周我要停掉什么，至少停 1 件无效动作</li><li>第四问：下周最小的一步是什么，具体到今天能做</li><li>把四问写在固定位置，与上周对比</li></ol>
+    <div class="out"><b>本卡产出：</b>周复盘表（每周一行）</div>
+    <div class="vars"><div><b>A 升学</b>复盘中标记与考试科目相关的动作完成情况</div><div><b>B 就业</b>复盘中标记投递、面试与实习进展</div><div><b>C 创业</b>复盘中标记试水进度与客户反馈</div></div>
+  </div>
+  <div class="hook">52 周累积成年度轨迹；本周所属月份主题「补课：把缺口补成证书」</div>
+  <div class="foot"><span>2027 生涯探索年历 · 十月</span><span>第 25 / 32 页</span></div>
+</section></div><div class="cell"><section class="sheet" style="--c:#0F3D2E">
+  <div class="top">
+    <div class="dt">10月25日<small>周一</small></div>
+    <div class="meta"><span class="chip">工具卡日</span><span class="lines">走向 A升学 / B就业 / C创业</span></div>
+  </div>
+  <h1>④中期降标</h1>
+  <p class="desc">第 14 天检查进度，不足则降标</p>
+  <div class="kv">
+    <span><i>用时</i> 15 分钟</span>
+    <span><i>材料</i> 计划表</span>
+  </div>
+  
+  <div class="hook">结果记入「行动实验记录」，10 月 D06 缺口优先级据此排序｜本卡进度 4/5，下一步：⑤交付验收</div>
+  <div class="foot"><span>2027 生涯探索年历 · 十月</span><span>第 26 / 32 页</span></div>
+</section></div><div class="cell"><section class="sheet" style="--c:#0F3D2E">
+  <div class="top">
+    <div class="dt">10月26日<small>周二</small></div>
+    <div class="meta"><span class="chip">工具卡日</span><span class="lines">走向 A升学 / B就业 / C创业</span></div>
+  </div>
+  <h1>④标自评状态</h1>
+  <p class="desc">标已取得与待取得，圈最近节点</p>
+  <div class="kv">
+    <span><i>用时</i> 5 分钟</span>
+    <span><i>材料</i> 清单表</span>
+  </div>
+  
+  <div class="hook">产出存进成果夹与作品集，12 月 R05 年报直接引用｜本卡进度 4/5，下一步：⑤排报考顺序</div>
+  <div class="foot"><span>2027 生涯探索年历 · 十月</span><span>第 27 / 32 页</span></div>
+</section></div><div class="cell"><section class="sheet" style="--c:#0F3D2E">
+  <div class="top">
+    <div class="dt">10月27日<small>周三</small></div>
+    <div class="meta"><span class="chip">工具卡日</span><span class="lines">走向 A升学 / B就业 / C创业</span></div>
+  </div>
+  <h1>④搭结构</h1>
+  <p class="desc">封面、概览、分区、联系方式</p>
+  <div class="kv">
+    <span><i>用时</i> 15 分钟</span>
+    <span><i>材料</i> 文档/网页</span>
+  </div>
+  
+  <div class="hook">产出存进成果夹与作品集，12 月 R05 年报直接引用｜本卡进度 4/5，下一步：⑤可用性检查</div>
+  <div class="foot"><span>2027 生涯探索年历 · 十月</span><span>第 28 / 32 页</span></div>
+</section></div></section>
+<section class="a4"><div class="cell"><section class="sheet" style="--c:#0F3D2E">
+  <div class="top">
+    <div class="dt">10月28日<small>周四</small></div>
+    <div class="meta"><span class="chip">工具卡日</span><span class="lines">走向 A升学 / B就业 / C创业</span></div>
+  </div>
+  <h1>⑤起名定位</h1>
+  <p class="desc">给组合起名并写一句话</p>
+  <div class="kv">
+    <span><i>用时</i> 5 分钟</span>
+    <span><i>材料</i> 纸笔</span>
+  </div>
+  
+  <div class="hook">结果记入微创业闭环卡，9 月 D10 组合方案据此判断是否叠加｜本卡进度 5/5，下一步：本卡完结，产出转月度成果页</div>
+  <div class="foot"><span>2027 生涯探索年历 · 十月</span><span>第 29 / 32 页</span></div>
+</section></div><div class="cell"><section class="sheet" style="--c:#7C6AA8">
+  <div class="top">
+    <div class="dt">10月29日<small>周五</small></div>
+    <div class="meta"><span class="chip">专业专属日</span><span class="lines">走向 A升学 / B就业 / C创业</span></div>
+  </div>
+  <h1>数字媒体技术·专属探索日</h1>
+  <p class="desc">当天完成四段式探索：1)用手机拍 1 段 10 秒定格动画，至少 15 帧；2)拆解 1 条爆款短视频的前 3 秒钩子与节奏结构；3)列出 3 个可承接的校园短视频或剪辑需求；4)整理自己的作品链接清单，标注每件的角色与工具</p>
+  <div class="kv">
+    <span><i>用时</i> 80 分钟</span>
+    <span><i>材料</i> 手机、剪辑App、作品链接</span>
+  </div>
+  
+  <div class="hook">挂靠「世界动画日（10月29日，国际动画协会设立）」；当日产出并入专业地图，11 月 D07 定档时作为专业侧事实依据</div>
+  <div class="foot"><span>2027 生涯探索年历 · 十月</span><span>第 30 / 32 页</span></div>
+</section></div><div class="cell"><section class="sheet" style="--c:#B4553C">
+  <div class="top">
+    <div class="dt">10月30日<small>周六</small></div>
+    <div class="meta"><span class="chip">月度成果</span><span class="lines">走向 A升学 / B就业 / C创业</span></div>
+  </div>
+  <h1>月度成果页：能力缺口—冲刺计划表＋作品集骨架</h1>
+  <p class="desc">把 10 月所有卡日产出并成一页，对照本月探索目标写一句自评；未完成的动作移入弹性池（○01-○12），不顺延挤占下月</p>
+  <div class="kv">
+    <span><i>用时</i> 40 分钟</span>
+    <span><i>材料</i> 成果夹、一页纸</span>
+  </div>
+  
+  <div class="hook">本页是「十月」的收口，12 月 R05 年报按页汇总</div>
+  <div class="foot"><span>2027 生涯探索年历 · 十月</span><span>第 31 / 32 页</span></div>
+</section></div><div class="cell"><section class="sheet" style="--c:#3F6E8C">
+  <div class="top">
+    <div class="dt">10月31日<small>周日</small></div>
+    <div class="meta"><span class="chip">周闭环</span><span class="lines">走向 A升学 / B就业 / C创业</span></div>
+  </div>
+  <h1>周闭环四问：第二问看清晰度</h1>
+  <p class="desc">写对哪条路径更清楚或更糊涂（另三问固定：本周做了什么事实／哪条路更清晰／下周停掉什么、最小一步是什么）</p>
+  <div class="kv">
+    <span><i>用时</i> 10 分钟</span>
+    <span><i>材料</i> 周复盘表</span>
+  </div>
+  <div class="cbox">
+    <div class="ch"><span>工具卡 R01 · 周闭环复盘四问</span><em>10 分钟 · 核心卡</em></div>
+    <p class="pool">每周日用四个问题结掉一周，保证探索动作不断线、不重复、不空转。</p>
+    <ol class="steps"><li>第一问：本周我做了什么具体动作，写出事实不写感受</li><li>第二问：这个动作让我对哪条路径更清楚或更糊涂，写一句</li><li>第三问：下周我要停掉什么，至少停 1 件无效动作</li><li>第四问：下周最小的一步是什么，具体到今天能做</li><li>把四问写在固定位置，与上周对比</li></ol>
+    <div class="out"><b>本卡产出：</b>周复盘表（每周一行）</div>
+    <div class="vars"><div><b>A 升学</b>复盘中标记与考试科目相关的动作完成情况</div><div><b>B 就业</b>复盘中标记投递、面试与实习进展</div><div><b>C 创业</b>复盘中标记试水进度与客户反馈</div></div>
+  </div>
+  <div class="hook">52 周累积成年度轨迹；本周所属月份主题「补课：把缺口补成证书」</div>
+  <div class="foot"><span>2027 生涯探索年历 · 十月</span><span>第 32 / 32 页</span></div>
+</section></div></section>
+</body></html>

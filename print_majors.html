@@ -1,0 +1,338 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>2027 生涯探索年历 · 24 专业专属日打印版（A4 四合一）</title>
+<style>
+:root{ --ink:#1f2a24; --sub:#5b625c; --paper:#fffdf8; --line:#ddd6c6; }
+@page{ size:A4 portrait; margin:0; }
+*{ box-sizing:border-box; -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+html,body{ margin:0; padding:0; }
+body{ background:#e7e4dc; font-family:"Microsoft YaHei","PingFang SC","Noto Sans CJK SC",sans-serif; color:var(--ink); }
+.screen-note{ max-width:210mm; margin:8mm auto 6mm; background:#fff; border:1px solid #d8d2c4; border-left:4px solid #0F3D2E; border-radius:4px; padding:10px 14px; font-size:13px; line-height:1.75; color:#33403a; }
+.screen-note b{ color:#0F3D2E; }
+.screen-note code{ background:#f2efe6; padding:1px 5px; border-radius:3px; font-size:12px; }
+.a4{ width:210mm; height:297mm; background:#fff; display:grid; grid-template-columns:105mm 105mm; grid-template-rows:148.5mm 148.5mm; overflow:hidden; margin:0 auto 6mm; box-shadow:0 2px 10px rgba(0,0,0,.16); page-break-after:always; break-after:page; }
+.cell{ position:relative; width:105mm; height:148.5mm; overflow:hidden; }
+.cell::after{ content:""; position:absolute; inset:0; border:0.2mm dashed #cfc9ba; pointer-events:none; z-index:5; }
+.sheet{ position:absolute; left:0; top:0; width:148mm; height:210mm; padding:8.5mm 8.5mm 6.5mm; background:var(--paper); transform:scale(0.707143); transform-origin:top left; display:flex; flex-direction:column; }
+.sheet .top{ display:flex; align-items:flex-end; justify-content:space-between; gap:3mm; border-bottom:0.7mm solid var(--c,#0F3D2E); padding-bottom:1.8mm; }
+.dt{ font-size:19pt; font-weight:800; line-height:1; letter-spacing:.3pt; }
+.dt small{ font-size:8.6pt; font-weight:600; color:#6b7169; margin-left:1.6mm; letter-spacing:0; }
+.meta{ text-align:right; line-height:1.55; }
+.chip{ display:inline-block; background:var(--c); color:#fff; padding:0.5mm 2mm; border-radius:1mm; font-size:7pt; font-weight:700; letter-spacing:.2pt; }
+.lines{ display:block; margin-top:1mm; font-size:6.8pt; color:#5b625c; }
+.sheet h1{ font-size:13.6pt; line-height:1.34; font-weight:800; margin:2.8mm 0 1.8mm; letter-spacing:.2pt; }
+.desc{ font-size:8.5pt; line-height:1.6; color:#2c352f; margin:0 0 2.2mm; }
+.kv{ display:flex; flex-wrap:wrap; gap:1.4mm 2.6mm; font-size:7.4pt; color:#4a534c; margin-bottom:2mm; }
+.kv i{ font-style:normal; color:#9aa19a; }
+.cbox{ border:0.35mm solid var(--line); border-radius:1.2mm; background:#fff; padding:2.6mm 3mm 2.8mm; }
+.cbox .ch{ display:flex; justify-content:space-between; align-items:baseline; gap:2mm; font-size:8pt; font-weight:800; color:#0F3D2E; border-bottom:0.3mm dashed var(--line); padding-bottom:1.3mm; margin-bottom:1.8mm; }
+.cbox .ch em{ font-style:normal; font-size:6.8pt; font-weight:600; color:#7b837c; }
+.pool{ font-size:7.3pt; line-height:1.5; color:#4a534c; margin:0 0 1.6mm; }
+ol.steps{ margin:0; padding-left:4.4mm; font-size:7.5pt; line-height:1.52; }
+ol.steps li{ margin-bottom:0.7mm; }
+.out{ margin-top:1.6mm; font-size:7.3pt; color:#33403a; background:#f5f2e8; border-radius:0.8mm; padding:1.3mm 1.8mm; }
+.out b{ color:#0F3D2E; }
+.vars{ display:flex; gap:1.5mm; margin-top:1.8mm; }
+.vars div{ flex:1; background:#f6f3ea; border-radius:1mm; padding:1.2mm 1.4mm; font-size:6.6pt; line-height:1.45; color:#4a534c; }
+.vars div b{ display:block; color:#0F3D2E; font-size:6.8pt; margin-bottom:0.5mm; }
+.hook{ margin-top:1.8mm; font-size:7.2pt; line-height:1.5; color:#7a5a3a; background:#fdf6ea; border-left:0.8mm solid #d9a55a; padding:1.6mm 2mm; }
+.foot{ margin-top:auto; padding-top:1.2mm; border-top:0.25mm solid #e6e0d2; display:flex; justify-content:space-between; font-size:6.4pt; color:#9aa19a; letter-spacing:.2pt; }
+/* 月封面 */
+.sheet.mon{ justify-content:flex-start; }
+.sheet.mon .mnum{ font-size:44pt; font-weight:800; line-height:.86; color:var(--c,#0F3D2E); letter-spacing:-1pt; }
+.sheet.mon .mttl{ font-size:15pt; font-weight:800; margin-top:2mm; }
+.sheet.mon .mq{ margin-top:3.5mm; font-size:9.4pt; line-height:1.65; color:#2c352f; background:#f5f2e8; border-left:1mm solid var(--c,#0F3D2E); padding:2.6mm 3mm; }
+.mrow{ margin-top:2.4mm; font-size:7.8pt; line-height:1.55; color:#33403a; }
+.mrow b{ color:#0F3D2E; display:inline-block; min-width:11mm; }
+.pool-chips{ margin-top:3mm; display:flex; flex-wrap:wrap; gap:1.2mm; }
+.pool-chips span{ background:#f0ece0; border-radius:0.8mm; padding:0.9mm 1.6mm; font-size:6.8pt; color:#4a534c; }
+/* 专业日页 */
+.sheet.maj .anchor{ margin-top:2.4mm; font-size:7.6pt; color:#5b4a86; background:#f3f0fa; border-radius:1mm; padding:1.8mm 2.2mm; line-height:1.5; }
+.sheet.maj .reason{ margin-top:2mm; font-size:7.8pt; line-height:1.55; color:#2c352f; }
+.sheet.maj ol{ margin:1.8mm 0 0; padding-left:4.4mm; font-size:7.6pt; line-height:1.55; }
+.sheet.maj ol li{ margin-bottom:0.9mm; }
+@media screen{
+  .a4{ margin-top:0; }
+  .a4:first-of-type{ margin-top:6mm; }
+}
+@media print{
+  body{ background:#fff; }
+  .screen-note{ display:none !important; }
+  .a4{ margin:0 !important; box-shadow:none !important; }
+  .a4:last-of-type{ page-break-after:auto; break-after:auto; }
+  .cell::after{ border-color:#d8d2c4; }
+}
+</style>
+</head><body>
+<div class="screen-note"><b>打印设置</b>：Ctrl+P → 纸张 <code>A4 纵向</code>、缩放 <code>默认（100%）</code>、边距 <code>无</code>、勾选 <code>背景图形</code>。每张 A4 排 4 个 A5 页（左上 → 右上 → 左下 → 右下），格间虚线为裁切线，裁开后即为 A5 卡片，<b>无装订孔位</b>。本说明不参与打印。　24 个专业专属日，共 6 张 A4。</div><section class="a4"><div class="cell"><section class="sheet maj" style="--c:#7C6AA8">
+  <div class="top">
+    <div class="dt" style="font-size:15pt">现代教育技术</div>
+    <div class="meta"><span class="chip" style="--c:#7C6AA8;background:#7C6AA8">专业专属日</span><span class="lines">2027-01-24　周日</span></div>
+  </div>
+  <h1 style="font-size:11.6pt;color:#5b4a86">信息科学学院　·　国际教育日（1月24日，联合国大会 2018 年设立）</h1>
+  <div class="reason">国际教育日聚焦教育公平与数字化转型，与本专业&quot;教学设计与数字资源开发&quot;的核心能力直接对应，也是教育部推进教育数字化的政策话语场。</div>
+  <div class="anchor">材料：手机或电脑、微课脚本模板、教师访谈三问卡　|　用时：60 分钟　|　产出：微课脚本 1 份＋教师需求访谈记录 1 页</div>
+  <ol><li>给一门专业课做数字资源缺口清单，列出 5 个可数字化环节并标出优先级</li><li>用免费工具把一个知识点做成 3 分钟微课脚本（含开场钩子、讲解、练习）</li><li>访谈 1 位一线教师，只问三个问题：你最想要什么教学工具、现在怎么凑合、为什么没换</li><li>体验 1 个&quot;AI+教学&quot;产品，写 150 字可用与不可用之处</li></ol>
+  <div class="pool-chips"><span>N07 岗位说明书逆向拆解</span><span>S02 经历—能力证据卡</span><span>A02 十五分钟生涯访谈</span></div>
+  <div class="foot"><span>2027 生涯探索年历 · 专业专属日</span><span>第 1 / 24 页</span></div>
+</section></div><div class="cell"><section class="sheet maj" style="--c:#7C6AA8">
+  <div class="top">
+    <div class="dt" style="font-size:15pt">小学数学教育</div>
+    <div class="meta"><span class="chip" style="--c:#7C6AA8;background:#7C6AA8">专业专属日</span><span class="lines">2027-03-14　周日</span></div>
+  </div>
+  <h1 style="font-size:11.6pt;color:#5b4a86">人文科学学院　·　国际数学日（3月14日，联合国教科文组织2019年设立）</h1>
+  <div class="reason">国际数学日以圆周率日起源，主张&quot;数学与生活相连&quot;，正对小学数学教育的学科本质与生活化教学转化能力。</div>
+  <div class="anchor">材料：纸笔、手机录像、试讲记录表　|　用时：70 分钟　|　产出：90 秒讲题视频＋试讲卡点记录</div>
+  <ol><li>用一件生活物品（水杯、地砖、楼梯）设计 1 道数学建模小题，写出题目与参考答案</li><li>录 90 秒讲题视频，只讲一个小学生最常错的一点，不许贪多</li><li>找 1 名小学生做 10 分钟试讲，记录他卡住的那一秒</li><li>列出 3 个&quot;数学恐惧&quot;现象与对应的化解话术</li></ol>
+  <div class="pool-chips"><span>A01 一日职业影子跟岗</span><span>S02 经历—能力证据卡</span><span>S05 面试问答脚本</span></div>
+  <div class="foot"><span>2027 生涯探索年历 · 专业专属日</span><span>第 2 / 24 页</span></div>
+</section></div><div class="cell"><section class="sheet maj" style="--c:#7C6AA8">
+  <div class="top">
+    <div class="dt" style="font-size:15pt">社会工作</div>
+    <div class="meta"><span class="chip" style="--c:#7C6AA8;background:#7C6AA8">专业专属日</span><span class="lines">2027-03-16　周二</span></div>
+  </div>
+  <h1 style="font-size:11.6pt;color:#5b4a86">人文科学学院　·　国际社会工作日（3 月第三个星期二，2027 年为 3 月 16 日）</h1>
+  <div class="reason">国际社会工作日是全球社会工作行业统一纪念日，主题围绕&quot;以人为本&quot;的专业价值，与社会工作专业的伦理与实务直接对应。</div>
+  <div class="anchor">材料：校园地图、访谈提纲、便签　|　用时：60 分钟　|　产出：校园服务机会地图＋价值自述 100 字</div>
+  <ol><li>画出校园及周边 5 类&quot;容易被忽略的人群&quot;分布图，标注他们在哪、什么时候出现</li><li>列出 3 个校园可落地的社工服务微项目，各写一句服务对象与切口</li><li>用倾听四步（不打断、复述、追问感受、确认需要）完成 1 次 20 分钟同学访谈</li><li>写一段 100 字的社工价值自述，说清&quot;我为什么愿意做助人的活&quot;</li></ol>
+  <div class="pool-chips"><span>P03 价值观排序卡</span><span>A08 服务对象需求观察</span><span>S01 一句话自我介绍</span></div>
+  <div class="foot"><span>2027 生涯探索年历 · 专业专属日</span><span>第 3 / 24 页</span></div>
+</section></div><div class="cell"><section class="sheet maj" style="--c:#7C6AA8">
+  <div class="top">
+    <div class="dt" style="font-size:15pt">特殊教育</div>
+    <div class="meta"><span class="chip" style="--c:#7C6AA8;background:#7C6AA8">专业专属日</span><span class="lines">2027-04-02　周五</span></div>
+  </div>
+  <h1 style="font-size:11.6pt;color:#5b4a86">学前教育学院　·　世界孤独症关注日（4月2日，联合国设立）</h1>
+  <div class="reason">4 月 2 日是联合国设立的世界孤独症关注日，是特殊教育领域最重要的公共倡导节点，也是特教从业者的专业身份日。</div>
+  <div class="anchor">材料：科普卡模板、活动设计单、课堂实录视频　|　用时：70 分钟　|　产出：孤独症科普卡 1 张＋活动设计单 1 份</div>
+  <ol><li>查孤独症早期识别的 5 个行为信号，做成一张可转发的科普卡</li><li>设计 1 个 10 分钟感统或沟通小活动，写清目标、材料、步骤、观察点</li><li>观看 1 段特教课堂实录，记下 3 个教师做出的教学调整</li><li>写下&quot;我为什么愿意做特教&quot;的三句理由，每句不超过 20 字</li></ol>
+  <div class="pool-chips"><span>N07 岗位说明书逆向拆解</span><span>S01 一句话自我介绍</span><span>A08 服务对象需求观察</span></div>
+  <div class="foot"><span>2027 生涯探索年历 · 专业专属日</span><span>第 4 / 24 页</span></div>
+</section></div></section>
+<section class="a4"><div class="cell"><section class="sheet maj" style="--c:#7C6AA8">
+  <div class="top">
+    <div class="dt" style="font-size:15pt">美术教育</div>
+    <div class="meta"><span class="chip" style="--c:#7C6AA8;background:#7C6AA8">专业专属日</span><span class="lines">2027-04-15　周四</span></div>
+  </div>
+  <h1 style="font-size:11.6pt;color:#5b4a86">艺术教育学院　·　世界艺术日（4月15日，达·芬奇诞辰，国际艺术协会 IAA 倡导设立）</h1>
+  <div class="reason">世界艺术日定在达·芬奇生日，主张艺术对社会的价值，与美术教育的审美启蒙与创作教学直接对应。</div>
+  <div class="anchor">材料：速写纸、笔、旧作照片　|　用时：60 分钟　|　产出：速写 1 张＋教学说明 100 字</div>
+  <ol><li>以&quot;我的 2027&quot;为题画 1 张 20 分钟速写，不许修改，保留第一笔</li><li>给这张画写 100 字教学说明：如果教小学生画这个，我会怎么引导</li><li>整理 5 张自己的旧作，选出最能代表成长的一张并说明理由</li><li>列出 3 个可用于课堂的本地美术资源（场馆、材料、手艺人）</li></ol>
+  <div class="pool-chips"><span>S08 作品集骨架</span><span>P02 高光时刻回溯表</span><span>N05 课程—能力对应表</span></div>
+  <div class="foot"><span>2027 生涯探索年历 · 专业专属日</span><span>第 5 / 24 页</span></div>
+</section></div><div class="cell"><section class="sheet maj" style="--c:#7C6AA8">
+  <div class="top">
+    <div class="dt" style="font-size:15pt">小学科学教育</div>
+    <div class="meta"><span class="chip" style="--c:#7C6AA8;background:#7C6AA8">专业专属日</span><span class="lines">2027-04-22　周四</span></div>
+  </div>
+  <h1 style="font-size:11.6pt;color:#5b4a86">人文科学学院　·　世界地球日（4月22日）</h1>
+  <div class="reason">世界地球日是全球规模最大的环保行动日，其主题与小学科学教育中的科学素养、探究式教学天然契合。</div>
+  <div class="anchor">材料：生活材料、手机、微课框架表　|　用时：70 分钟　|　产出：小实验记录＋微课框架 1 份</div>
+  <ol><li>在家或校园做 1 个 5 分钟内可完成的科学小实验（表面张力、静电、气压任选），拍 3 张过程图</li><li>写出这个实验的&quot;儿童版提问链&quot;5 问，从看见到猜想再到验证</li><li>统计一天内自己产生的垃圾种类与数量，做成一行数据</li><li>设计 1 节 15 分钟&quot;身边的科学&quot;微课框架，含导入、探究、结论</li></ol>
+  <div class="pool-chips"><span>A01 一日职业影子跟岗</span><span>S02 经历—能力证据卡</span><span>N05 课程—能力对应表</span></div>
+  <div class="foot"><span>2027 生涯探索年历 · 专业专属日</span><span>第 6 / 24 页</span></div>
+</section></div><div class="cell"><section class="sheet maj" style="--c:#7C6AA8">
+  <div class="top">
+    <div class="dt" style="font-size:15pt">人工智能技术应用</div>
+    <div class="meta"><span class="chip" style="--c:#7C6AA8;background:#7C6AA8">专业专属日</span><span class="lines">2027-04-26　周一</span></div>
+  </div>
+  <h1 style="font-size:11.6pt;color:#5b4a86">信息科学学院　·　世界知识产权日（4月26日，世界知识产权组织设立）</h1>
+  <div class="reason">AI 生成内容的版权归属与训练数据合规，是本专业最前沿也最现实的议题，世界知识产权日提供了权威讨论框架。</div>
+  <div class="anchor">材料：电脑、AI 工具账号、案例检索页　|　用时：80 分钟　|　产出：AI 工具对比表＋版权判断 150 字</div>
+  <ol><li>用 3 款 AI 工具完成同一任务（写文案、做图或写代码任选），比较输出差异并做一张对比表</li><li>查 1 个 AI 生成物版权案例，写 150 字自己的判断（归谁、为什么）</li><li>列出 3 个&quot;本校可落地的 AI 小工具&quot;点子，各写一句使用场景</li><li>用 AI 帮自己完成 1 件学习杂事，记录省下多少分钟</li></ol>
+  <div class="pool-chips"><span>N08 行业趋势三源交叉</span><span>X01 复合能力拼图</span><span>D02 选项排除清单</span></div>
+  <div class="foot"><span>2027 生涯探索年历 · 专业专属日</span><span>第 7 / 24 页</span></div>
+</section></div><div class="cell"><section class="sheet maj" style="--c:#7C6AA8">
+  <div class="top">
+    <div class="dt" style="font-size:15pt">艺术设计</div>
+    <div class="meta"><span class="chip" style="--c:#7C6AA8;background:#7C6AA8">专业专属日</span><span class="lines">2027-04-27　周二</span></div>
+  </div>
+  <h1 style="font-size:11.6pt;color:#5b4a86">艺术教育学院　·　世界平面设计日（4月27日，国际平面设计协会理事会 Icograda 1995 年确立）</h1>
+  <div class="reason">世界平面设计日纪念 1963 年首届世界设计大会，是视觉传达与设计行业的国际纪念日。</div>
+  <div class="anchor">材料：手机拍照、A4 纸、马克笔　|　用时：70 分钟　|　产出：设计物观察 10 例＋海报草图 1 张</div>
+  <ol><li>收集 10 个校园或街头的设计物（海报、招牌、包装、界面），评出最好与最差各 1 个并说清原因</li><li>为一个真实校园活动设计 1 张 A4 海报草图，只做构图不做细节</li><li>列出 3 个可以接的真实小单来源（社团、小店、老师）</li><li>记录这 10 个设计物里重复出现的 3 个视觉套路</li></ol>
+  <div class="pool-chips"><span>S08 作品集骨架</span><span>X02 微创业最小闭环</span><span>N07 岗位说明书逆向拆解</span></div>
+  <div class="foot"><span>2027 生涯探索年历 · 专业专属日</span><span>第 8 / 24 页</span></div>
+</section></div></section>
+<section class="a4"><div class="cell"><section class="sheet maj" style="--c:#7C6AA8">
+  <div class="top">
+    <div class="dt" style="font-size:15pt">舞蹈表演</div>
+    <div class="meta"><span class="chip" style="--c:#7C6AA8;background:#7C6AA8">专业专属日</span><span class="lines">2027-04-29　周四</span></div>
+  </div>
+  <h1 style="font-size:11.6pt;color:#5b4a86">艺术教育学院　·　世界舞蹈日（4月29日，国际舞蹈委员会设立）</h1>
+  <div class="reason">世界舞蹈日纪念现代芭蕾之父诺维尔，是舞蹈行业全球统一的纪念日，也强调舞蹈的普及与教育价值。</div>
+  <div class="anchor">材料：手机、可拍摄空间、教学拆解表　|　用时：70 分钟　|　产出：60 秒片段＋教学设计 1 份</div>
+  <ol><li>用手机录 60 秒自编或自演片段，回看并写 3 个改进点（不评价美丑，只写具体动作）</li><li>拆解 1 个成品舞段的教学顺序：先教什么、后教什么、为什么</li><li>设计 1 个面向零基础儿童的 10 分钟律动游戏</li><li>列出 3 个可参与的本地演出或带课机会，写下联系方式</li></ol>
+  <div class="pool-chips"><span>A01 一日职业影子跟岗</span><span>S08 作品集骨架</span><span>N07 岗位说明书逆向拆解</span></div>
+  <div class="foot"><span>2027 生涯探索年历 · 专业专属日</span><span>第 9 / 24 页</span></div>
+</section></div><div class="cell"><section class="sheet maj" style="--c:#7C6AA8">
+  <div class="top">
+    <div class="dt" style="font-size:15pt">首饰设计与工艺</div>
+    <div class="meta"><span class="chip" style="--c:#7C6AA8;background:#7C6AA8">专业专属日</span><span class="lines">2027-05-01　周六</span></div>
+  </div>
+  <h1 style="font-size:11.6pt;color:#5b4a86">艺术教育学院　·　国际劳动节（5月1日）</h1>
+  <div class="reason">劳动节凸显工匠精神与手工劳动价值，与首饰设计与工艺的手作属性、工时长投入的行业特征高度一致。</div>
+  <div class="anchor">材料：手作材料、手机、白纸　|　用时：80 分钟　|　产出：手作小样 1 件＋成本卡 1 张</div>
+  <ol><li>用身边材料（铜丝、珠子、纸、树脂任选）做 1 件 30 分钟可完成的小样</li><li>为自己的小样写三项成本：材质成本、工时、心理定价</li><li>拍 3 张产品图：白底、场景、细节各一</li><li>列出 3 个潜在购买人群与他们的购买理由</li></ol>
+  <div class="pool-chips"><span>X02 微创业最小闭环</span><span>X04 产品服务定价卡</span><span>S08 作品集骨架</span></div>
+  <div class="foot"><span>2027 生涯探索年历 · 专业专属日</span><span>第 10 / 24 页</span></div>
+</section></div><div class="cell"><section class="sheet maj" style="--c:#7C6AA8">
+  <div class="top">
+    <div class="dt" style="font-size:15pt">早期教育</div>
+    <div class="meta"><span class="chip" style="--c:#7C6AA8;background:#7C6AA8">专业专属日</span><span class="lines">2027-05-15　周六</span></div>
+  </div>
+  <h1 style="font-size:11.6pt;color:#5b4a86">学前教育学院　·　国际家庭日（5月15日，联合国设立）</h1>
+  <div class="reason">早期教育的核心场域就是家庭，联合国国际家庭日聚焦家庭功能与代际支持，与本专业的家庭指导能力完全重合。</div>
+  <div class="anchor">材料：指导单模板、访谈提纲、手机　|　用时：70 分钟　|　产出：家庭指导单 1 份＋家长困扰清单</div>
+  <ol><li>设计 1 份&quot;0-3 岁亲子互动 10 分钟&quot;家庭指导单，含动作、语言、观察点</li><li>访谈 1 位 0-3 岁孩子的家长，记录 3 个真实困扰（原话记录，不改写）</li><li>列出 3 个家庭早教常见误区与纠正话术</li><li>录 2 分钟亲子游戏示范讲解，讲给&quot;没学过教育&quot;的家长听</li></ol>
+  <div class="pool-chips"><span>A08 服务对象需求观察</span><span>S05 面试问答脚本</span><span>N07 岗位说明书逆向拆解</span></div>
+  <div class="foot"><span>2027 生涯探索年历 · 专业专属日</span><span>第 11 / 24 页</span></div>
+</section></div><div class="cell"><section class="sheet maj" style="--c:#7C6AA8">
+  <div class="top">
+    <div class="dt" style="font-size:15pt">艺术教育</div>
+    <div class="meta"><span class="chip" style="--c:#7C6AA8;background:#7C6AA8">专业专属日</span><span class="lines">2027-05-18　周二</span></div>
+  </div>
+  <h1 style="font-size:11.6pt;color:#5b4a86">艺术教育学院　·　国际博物馆日（5月18日，国际博物馆协会设立）</h1>
+  <div class="reason">公共文化场馆是艺术教育最重要的实践场与就业场，国际博物馆日聚焦博物馆的教育功能，与本专业出口直接相关。</div>
+  <div class="anchor">材料：展馆资料、导览脚本表　|　用时：80 分钟　|　产出：导览脚本 1 份＋机构清单 5 家</div>
+  <ol><li>线上或线下逛 1 个博物馆或美术馆，记 5 件展品与 1 条策展逻辑</li><li>设计 1 个&quot;带小学生看展&quot;的 20 分钟导览脚本，含 3 个提问点</li><li>列出本地 5 个可合作的公共文化机构与学生活动项目</li><li>写 100 字&quot;艺术教育到底能给孩子什么&quot;，不许用套话</li></ol>
+  <div class="pool-chips"><span>N07 岗位说明书逆向拆解</span><span>S06 实践成果一页纸</span><span>A02 十五分钟生涯访谈</span></div>
+  <div class="foot"><span>2027 生涯探索年历 · 专业专属日</span><span>第 12 / 24 页</span></div>
+</section></div></section>
+<section class="a4"><div class="cell"><section class="sheet maj" style="--c:#7C6AA8">
+  <div class="top">
+    <div class="dt" style="font-size:15pt">研学旅行管理与服务</div>
+    <div class="meta"><span class="chip" style="--c:#7C6AA8;background:#7C6AA8">专业专属日</span><span class="lines">2027-05-19　周三</span></div>
+  </div>
+  <h1 style="font-size:11.6pt;color:#5b4a86">外语教育学院　·　中国旅游日（5月19日，源自《徐霞客游记》开篇日）</h1>
+  <div class="reason">研学旅行是旅游与教育的交叉新业态，中国旅游日提供了行业公共话语与本地资源盘点契机。</div>
+  <div class="anchor">材料：景点资料、成本表、招聘截图　|　用时：80 分钟　|　产出：半日研学方案 1 份（含成本核算）</div>
+  <ol><li>选 1 个本地景点，写 1 份半日研学方案，左栏行程右栏课程目标，逐条对应</li><li>核算该方案人均成本：门票、交通、保险、物料、人力</li><li>列出 3 类研学安全风险与对应处置流程</li><li>整理 3 家研学或营地机构的招聘要求，摘出共同项</li></ol>
+  <div class="pool-chips"><span>X02 微创业最小闭环</span><span>N07 岗位说明书逆向拆解</span><span>D04 升学投入产出估算</span></div>
+  <div class="foot"><span>2027 生涯探索年历 · 专业专属日</span><span>第 13 / 24 页</span></div>
+</section></div><div class="cell"><section class="sheet maj" style="--c:#7C6AA8">
+  <div class="top">
+    <div class="dt" style="font-size:15pt">食品营养与健康</div>
+    <div class="meta"><span class="chip" style="--c:#7C6AA8;background:#7C6AA8">专业专属日</span><span class="lines">2027-05-20　周四</span></div>
+  </div>
+  <h1 style="font-size:11.6pt;color:#5b4a86">学前教育学院　·　中国学生营养日（5月20日，1989年设立）</h1>
+  <div class="reason">中国学生营养日面向校园人群营养改善，与本专业服务幼儿园与学校膳食管理的方向完全对应。</div>
+  <div class="anchor">材料：食物记录表、食谱表、食品包装　|　用时：80 分钟　|　产出：一日带量食谱 1 份＋标签陷阱记录</div>
+  <ol><li>记录自己一天的饮食，粗算三大营养素比例与总热量区间</li><li>为幼儿园设计 1 份一日带量食谱（3 餐 2 点），标出每餐克数</li><li>查 1 个食品标签，指出 3 个容易误导的表述（如&quot;零蔗糖&quot;）</li><li>访谈 1 位食堂管理员或营养相关从业者，问 3 个现实问题</li></ol>
+  <div class="pool-chips"><span>N07 岗位说明书逆向拆解</span><span>S02 经历—能力证据卡</span><span>A08 服务对象需求观察</span></div>
+  <div class="foot"><span>2027 生涯探索年历 · 专业专属日</span><span>第 14 / 24 页</span></div>
+</section></div><div class="cell"><section class="sheet maj" style="--c:#7C6AA8">
+  <div class="top">
+    <div class="dt" style="font-size:15pt">嵌入式技术应用</div>
+    <div class="meta"><span class="chip" style="--c:#7C6AA8;background:#7C6AA8">专业专属日</span><span class="lines">2027-05-30　周日</span></div>
+  </div>
+  <h1 style="font-size:11.6pt;color:#5b4a86">信息科学学院　·　全国科技工作者日（5月30日，2017年设立）</h1>
+  <div class="reason">全国科技工作者日面向工程技术人才，与本专业创客机器人、嵌入式开发的技术属性一致。</div>
+  <div class="anchor">材料：待拆小家电、开发板、杜邦线　|　用时：90 分钟　|　产出：模块框图 1 张＋元件控制记录</div>
+  <ol><li>拆解 1 件身边小家电（电风扇、玩具、充电器），画出功能模块框图</li><li>用现有开发板点亮并控制 1 个元件，记录引脚与代码关键行</li><li>列出 3 个可做的校园小发明题目，各写一句解决谁的什么问题</li><li>记录一次&quot;从需求到原型&quot;的完整链路，标出自己卡住的环节</li></ol>
+  <div class="pool-chips"><span>X03 副业可行性快筛</span><span>S08 作品集骨架</span><span>A01 一日职业影子跟岗</span></div>
+  <div class="foot"><span>2027 生涯探索年历 · 专业专属日</span><span>第 15 / 24 页</span></div>
+</section></div><div class="cell"><section class="sheet maj" style="--c:#7C6AA8">
+  <div class="top">
+    <div class="dt" style="font-size:15pt">学前教育</div>
+    <div class="meta"><span class="chip" style="--c:#7C6AA8;background:#7C6AA8">专业专属日</span><span class="lines">2027-06-01　周二</span></div>
+  </div>
+  <h1 style="font-size:11.6pt;color:#5b4a86">学前教育学院　·　国际儿童节（6月1日）</h1>
+  <div class="reason">六一国际儿童节是学前教育专业最核心的职业节日，直接指向儿童本位与儿童权利。</div>
+  <div class="anchor">材料：教案模板、视频片段、访谈提纲　|　用时：80 分钟　|　产出：集体教学活动教案 1 份</div>
+  <ol><li>写 1 份&quot;我理想中的幼儿园一日流程&quot;，从入园到离园逐段写</li><li>设计 1 个 15 分钟集体教学活动的完整教案（目标、准备、过程、延伸）</li><li>观察 3 个儿童行为视频片段，只记录看到的行为，不评价</li><li>访谈 1 位在职幼师，问三个现实问题：最累的是什么、最想改的是什么、最舍不得走的原因</li></ol>
+  <div class="pool-chips"><span>A01 一日职业影子跟岗</span><span>A08 服务对象需求观察</span><span>S05 面试问答脚本</span></div>
+  <div class="foot"><span>2027 生涯探索年历 · 专业专属日</span><span>第 16 / 24 页</span></div>
+</section></div></section>
+<section class="a4"><div class="cell"><section class="sheet maj" style="--c:#7C6AA8">
+  <div class="top">
+    <div class="dt" style="font-size:15pt">工艺美术品设计</div>
+    <div class="meta"><span class="chip" style="--c:#7C6AA8;background:#7C6AA8">专业专属日</span><span class="lines">2027-06-12　周六</span></div>
+  </div>
+  <h1 style="font-size:11.6pt;color:#5b4a86">艺术教育学院　·　文化和自然遗产日（6月第二个星期六，2027年为6月12日）</h1>
+  <div class="reason">非遗传承是工艺美术品设计最直接的素材源与就业方向，遗产日提供了完整的公共传播与资源盘点窗口。</div>
+  <div class="anchor">材料：非遗资料、速写本、手机　|　用时：80 分钟　|　产出：文创小稿 1 张＋纹样素材 5 张</div>
+  <ol><li>选 1 项本地非遗技艺，记录工艺流程步骤与当前传承人状况</li><li>用该技艺的一个元素做 1 个文创小稿（器型、纹样或包装任选）</li><li>列出 3 个非遗文创的商业化难点（成本、量产、审美代沟）</li><li>拍 5 张纹样或器型素材照片，建立个人素材库</li></ol>
+  <div class="pool-chips"><span>S08 作品集骨架</span><span>X01 复合能力拼图</span><span>N08 行业趋势三源交叉</span></div>
+  <div class="foot"><span>2027 生涯探索年历 · 专业专属日</span><span>第 17 / 24 页</span></div>
+</section></div><div class="cell"><section class="sheet maj" style="--c:#7C6AA8">
+  <div class="top">
+    <div class="dt" style="font-size:15pt">小学教育</div>
+    <div class="meta"><span class="chip" style="--c:#7C6AA8;background:#7C6AA8">专业专属日</span><span class="lines">2027-09-10　周五</span></div>
+  </div>
+  <h1 style="font-size:11.6pt;color:#5b4a86">人文科学学院　·　教师节（9月10日）</h1>
+  <div class="reason">教师节是中国教师的职业节日，小学教育是师范类核心专业，本日为师范生职业身份确认日。</div>
+  <div class="anchor">材料：信纸、优质课视频、招聘公告　|　用时：70 分钟　|　产出：感谢信 1 封＋教师标准 3 条</div>
+  <ol><li>给影响过自己的一位老师写 300 字感谢信，写明他做的一件具体事，寄出或发送</li><li>写 1 份&quot;我想成为什么样的老师&quot;的三条标准，每条配一个可观察的行为</li><li>拆解 1 节小学优质课的教学环节，标出设计意图</li><li>列出 3 项教师招聘公告中反复出现的硬条件</li></ol>
+  <div class="pool-chips"><span>P03 价值观排序卡</span><span>S05 面试问答脚本</span><span>N13 考编考公岗位条件解码</span></div>
+  <div class="foot"><span>2027 生涯探索年历 · 专业专属日</span><span>第 18 / 24 页</span></div>
+</section></div><div class="cell"><section class="sheet maj" style="--c:#7C6AA8">
+  <div class="top">
+    <div class="dt" style="font-size:15pt">小学英语教育</div>
+    <div class="meta"><span class="chip" style="--c:#7C6AA8;background:#7C6AA8">专业专属日</span><span class="lines">2027-09-26　周日</span></div>
+  </div>
+  <h1 style="font-size:11.6pt;color:#5b4a86">外语教育学院　·　欧洲语言日（9月26日，欧洲委员会设立）</h1>
+  <div class="reason">欧洲语言日倡导语言多样性与终身语言学习，与英语教育专业的语言教学属性与国际视野对应。</div>
+  <div class="anchor">材料：手机录音、游戏设计单　|　用时：60 分钟　|　产出：2 分钟英文音频＋课堂游戏 1 个</div>
+  <ol><li>用全英文录 2 分钟&quot;介绍我的专业&quot;音频，不许写稿照读</li><li>设计 1 个 10 分钟英语课堂游戏，说清规则与教学目标</li><li>查 3 个英语教学法名词（如 TPR、PPP、任务型教学），各用一句中文解释</li><li>统计自己一周的英语输入时长，算出日均分钟数</li></ol>
+  <div class="pool-chips"><span>S01 一句话自我介绍</span><span>A01 一日职业影子跟岗</span><span>N05 课程—能力对应表</span></div>
+  <div class="foot"><span>2027 生涯探索年历 · 专业专属日</span><span>第 19 / 24 页</span></div>
+</section></div><div class="cell"><section class="sheet maj" style="--c:#7C6AA8">
+  <div class="top">
+    <div class="dt" style="font-size:15pt">应用英语</div>
+    <div class="meta"><span class="chip" style="--c:#7C6AA8;background:#7C6AA8">专业专属日</span><span class="lines">2027-09-30　周四</span></div>
+  </div>
+  <h1 style="font-size:11.6pt;color:#5b4a86">外语教育学院　·　国际翻译日（9月30日，联合国2017年确立）</h1>
+  <div class="reason">国际翻译日纪念圣杰罗姆，是语言服务行业的国际纪念日，直接对应本专业的语言服务与幼儿双语能力。</div>
+  <div class="anchor">材料：绘本、词典或翻译工具、订单截图　|　用时：70 分钟　|　产出：绘本译文 300 字＋服务清单 5 类</div>
+  <ol><li>翻译 300 字幼儿绘本片段，标注 3 处难点译法及选择理由</li><li>为本地 1 家机构做一份双语简介试译（只练手，不投稿）</li><li>列出 5 类可接的语言服务订单与市场价区间</li><li>录 1 分钟双语自我介绍，中文在前英文在后</li></ol>
+  <div class="pool-chips"><span>S01 一句话自我介绍</span><span>X02 微创业最小闭环</span><span>N07 岗位说明书逆向拆解</span></div>
+  <div class="foot"><span>2027 生涯探索年历 · 专业专属日</span><span>第 20 / 24 页</span></div>
+</section></div></section>
+<section class="a4"><div class="cell"><section class="sheet maj" style="--c:#7C6AA8">
+  <div class="top">
+    <div class="dt" style="font-size:15pt">音乐教育</div>
+    <div class="meta"><span class="chip" style="--c:#7C6AA8;background:#7C6AA8">专业专属日</span><span class="lines">2027-10-01　周五</span></div>
+  </div>
+  <h1 style="font-size:11.6pt;color:#5b4a86">艺术教育学院　·　国际音乐日（10月1日，国际音乐理事会1975年设立）</h1>
+  <div class="reason">国际音乐日定于 10 月 1 日，是音乐行业的全球纪念日，与音乐教育的专业身份直接对应；当日亦为国庆，校内活动需错峰安排。</div>
+  <div class="anchor">材料：乐器、手机、活动设计单　|　用时：70 分钟　|　产出：90 秒音频＋节奏活动 1 个</div>
+  <ol><li>用手机录一段 90 秒自弹自唱或清唱，回看写 2 个改进点</li><li>设计 1 个 10 分钟儿童节奏训练活动，只用身体和简单打击物</li><li>拆解 1 首儿歌的节奏与和弦结构，标出适合教学的三个点</li><li>列出 3 个可带课或演出的本地渠道，写清联系人与门槛</li></ol>
+  <div class="pool-chips"><span>A01 一日职业影子跟岗</span><span>S08 作品集骨架</span><span>N07 岗位说明书逆向拆解</span></div>
+  <div class="foot"><span>2027 生涯探索年历 · 专业专属日</span><span>第 21 / 24 页</span></div>
+</section></div><div class="cell"><section class="sheet maj" style="--c:#7C6AA8">
+  <div class="top">
+    <div class="dt" style="font-size:15pt">智慧健康养老服务与管理</div>
+    <div class="meta"><span class="chip" style="--c:#7C6AA8;background:#7C6AA8">专业专属日</span><span class="lines">2027-10-08　周五</span></div>
+  </div>
+  <h1 style="font-size:11.6pt;color:#5b4a86">人文科学学院　·　重阳节（2027年10月8日，农历九月初九）</h1>
+  <div class="reason">2027 年重阳节为 10 月 8 日，敬老主题与本专业服务对象完全重合，是最自然的专业实践日。</div>
+  <div class="anchor">材料：访谈提纲、自检表模板　|　用时：70 分钟　|　产出：长辈需求记录＋适老化自检表</div>
+  <ol><li>访谈 1 位 65 岁以上长辈，记录 3 个真实生活困难（原话记录）</li><li>设计 1 份&quot;适老化改造 10 项自检表&quot;，每项标明判断标准</li><li>列出 3 类养老机构（居家、社区、机构）与各自典型岗位</li><li>写 100 字&quot;我理解的尊严养老&quot;，不许用&quot;关爱&quot;二字</li></ol>
+  <div class="pool-chips"><span>A08 服务对象需求观察</span><span>N07 岗位说明书逆向拆解</span><span>P03 价值观排序卡</span></div>
+  <div class="foot"><span>2027 生涯探索年历 · 专业专属日</span><span>第 22 / 24 页</span></div>
+</section></div><div class="cell"><section class="sheet maj" style="--c:#7C6AA8">
+  <div class="top">
+    <div class="dt" style="font-size:15pt">数字媒体技术</div>
+    <div class="meta"><span class="chip" style="--c:#7C6AA8;background:#7C6AA8">专业专属日</span><span class="lines">2027-10-29　周五</span></div>
+  </div>
+  <h1 style="font-size:11.6pt;color:#5b4a86">信息科学学院　·　世界动画日（10月29日，国际动画协会设立）</h1>
+  <div class="reason">世界动画日纪念动画先驱埃米尔·雷诺，是数字内容生产领域的国际纪念日，与短视频、动画内容生产直接对应。</div>
+  <div class="anchor">材料：手机、剪辑App、作品链接　|　用时：80 分钟　|　产出：10 秒定格动画＋作品清单</div>
+  <ol><li>用手机拍 1 段 10 秒定格动画，至少 15 帧</li><li>拆解 1 条爆款短视频的前 3 秒钩子与节奏结构</li><li>列出 3 个可承接的校园短视频或剪辑需求</li><li>整理自己的作品链接清单，标注每件的角色与工具</li></ol>
+  <div class="pool-chips"><span>S08 作品集骨架</span><span>X02 微创业最小闭环</span><span>N07 岗位说明书逆向拆解</span></div>
+  <div class="foot"><span>2027 生涯探索年历 · 专业专属日</span><span>第 23 / 24 页</span></div>
+</section></div><div class="cell"><section class="sheet maj" style="--c:#7C6AA8">
+  <div class="top">
+    <div class="dt" style="font-size:15pt">婴幼儿托育服务与管理</div>
+    <div class="meta"><span class="chip" style="--c:#7C6AA8;background:#7C6AA8">专业专属日</span><span class="lines">2027-11-20　周六</span></div>
+  </div>
+  <h1 style="font-size:11.6pt;color:#5b4a86">学前教育学院　·　国际儿童日（11月20日，联合国设立）</h1>
+  <div class="reason">11 月 20 日是联合国世界儿童日，聚焦儿童权利与福祉，与托育服务对象与管理场景一致。</div>
+  <div class="anchor">材料：作息表模板、标准文本、访谈提纲　|　用时：70 分钟　|　产出：托育一日作息表＋标准要点 5 条</div>
+  <ol><li>设计 1 份托育机构一日作息表（3 餐 2 睡 4 活动），标出时长</li><li>列出 0-3 岁照护的 5 个安全风险点与对应处置</li><li>查 1 份托育机构设置标准，摘 5 条硬指标（师幼比、面积、资质）</li><li>访谈 1 位双职工家长，记录其托育决策的三个考虑因素</li></ol>
+  <div class="pool-chips"><span>A08 服务对象需求观察</span><span>N13 考编考公岗位条件解码</span><span>S02 经历—能力证据卡</span></div>
+  <div class="foot"><span>2027 生涯探索年历 · 专业专属日</span><span>第 24 / 24 页</span></div>
+</section></div></section>
+</body></html>
